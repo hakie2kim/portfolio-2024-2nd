@@ -2,13 +2,11 @@
 
 ## 💬 소개
 
----
-
 ## 🔨 기능 요구사항
 
 ### 프로젝트 환경 설정
 
-#### 🐿️ Docker DB
+#### Docker DB
 
 ```
 # for Windows
@@ -18,7 +16,62 @@ docker run --name mysql-lecture -p 53306:3306 -v c:/dev/docker/mysql:/etc/mysql/
 docker run --name mysql-lecture -p 53306:3306 -v ~/dev/docker/mysql:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=admin_123 -d mysql:8.3.0
 ```
 
-#### 💠 Tiles
+#### MyBatis
+
+##### `pom.xml`
+
+```xml
+<dependency>
+	<groupId>org.mybatis</groupId>
+	<artifactId>mybatis</artifactId>
+	<version>3.5.16</version>
+</dependency>
+<dependency>
+	<groupId>org.mybatis</groupId>
+	<artifactId>mybatis-spring</artifactId>
+	<version>2.1.2</version>
+</dependency>
+```
+
+`mybatis-spring` 의존성 추가할 때 `spring-context`, `spring-jdbc`와 호환되는 버전을 확인하자. `spring` 버전 `5.x.x`와 호환되는 것을 확인할 수 있다.
+
+##### `src/main/resources/context-beans.xml`
+
+```xml
+<!-- mybatis start -->
+<!-- DAO 구현체 역할을 대신 해주는 클래스 기본설정 4가지가 필요 -->
+<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<!-- 1. DB에 접속 하기 위해서 설정 -->
+	<property name="dataSource" ref="dataSource" />
+
+	<!-- 2. myBatis 기본 설정 -->
+	<property name="configLocation" value="classpath:mybatis-config.xml" />
+
+	<!-- 3. query가 적힌 xml 위치 -->
+	<property name="mapperLocations" value="classpath:sql/SQL.*.xml" />
+
+	<!-- 4. 트랜잭션 관리 -->
+	<property name="transactionFactory">
+		<bean class="org.mybatis.spring.transaction.SpringManagedTransactionFactory" />
+	</property>
+</bean>
+
+<!-- 작업 지시서 DAO 위치를 지정해야 사용 할 수 있음 -->
+<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	<property name="basePackage" value="com.portfolio.www.dao.mybatis" />
+</bean>
+
+<!-- 트랜잭션 관리를 위한 bean -->
+<bean id="transactionManager"
+	class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<property name="dataSource" ref="dataSource" />
+</bean>
+<!-- mybatis end -->
+```
+
+##### `src/main/resources/mybatis-config.xml`
+
+#### Tiles
 
 ##### `pom.xml`
 
@@ -95,10 +148,6 @@ docker run --name mysql-lecture -p 53306:3306 -v ~/dev/docker/mysql:/etc/mysql/c
 
 ### 기타
 
----
-
 ## 🚨 트러블 슈팅
-
----
 
 ## 📝 메모
