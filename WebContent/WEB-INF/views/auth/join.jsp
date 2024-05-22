@@ -8,7 +8,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 offset-lg-3">
-                    <form action="#">
+                    <form action="<c:url value='/auth/join.do'/>" method="post">
                         <div class="cardify signup_form">
                             <div class="login--header">
                                 <h3>Create Your Account</h3>
@@ -37,12 +37,12 @@
 
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <input id="password" name="passwd" type="text" class="text_field" placeholder="Enter your password...">
+                                    <input type="password" id="password" name="passwd" type="text" class="text_field" placeholder="Enter your password...">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="con_pass">Confirm Password</label>
-                                    <input id="con_pass" type="text" class="text_field" placeholder="Confirm password">
+                                    <input type="password" id="con_pass" type="text" class="text_field" placeholder="Confirm password">
                                 </div>
 
                                 <button class="btn btn--md btn--round register_btn" type="submit">Register Now</button>
