@@ -30,6 +30,15 @@
 			expression="\.*\.dao\.*" />
 	</context:component-scan>
 	
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="defaultEncoding" value="UTF-8" />
+    	<property name="basename" value="classpath:errors" />
+	</bean>
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale" value="ko" />
+	</bean>
+	
 	<!-- mybatis start -->
 	<!-- DAO 구현체 역할을 대신 해주는 클래스 기본설정 4가지가 필요하다. -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

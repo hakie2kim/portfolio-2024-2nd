@@ -4,6 +4,13 @@
 
 ## 🔨 기능 요구사항
 
+### 회원가입
+
+- 아이디는 공백 또는 빈 칸일 수 없고 4~20자의 영어 소문자, 숫자만 사용 가능합니다.
+- 비밀번호는 8~16자의 영문 대/소문자, 숫자를 사용하고, 특수문자를 1개 이상 포함해야 합니다.
+- 이름은 공백 또는 빈 칸일 수 없습니다.
+- 이메일은 공백 또는 빈 칸일 수 없고 이메일 형식이어야 합니다.
+
 ### 프로젝트 환경 설정
 
 #### Docker DB
@@ -70,6 +77,25 @@ docker run --name mysql-lecture -p 53306:3306 -v ~/dev/docker/mysql:/etc/mysql/c
 ```
 
 ##### `src/main/resources/mybatis-config.xml`
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<!-- 예) member_id -> memberId -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+
+  <!-- 쿼리 수행 결과를 DTO에 자동 매핑하기 위해 DTO 검색 -->
+	<typeAliases>
+		<package name="com.portfolio.www.dto" />
+	</typeAliases>
+	<!-- 개별로 setting 하는 방법
+	<typeAlias alias="Employees" type="com.edu.dto.Employees" />
+	-->
+</configuration>
+```
 
 #### Tiles
 
