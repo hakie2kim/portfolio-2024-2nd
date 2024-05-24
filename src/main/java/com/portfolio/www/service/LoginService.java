@@ -13,7 +13,7 @@ public class LoginService {
 	@Autowired
 	MemberRepository memberRepository;
 
-	public MemberDto login(LoginForm loginForm) {
+	public boolean login(LoginForm loginForm) {
 		MemberDto memberDto = memberRepository.findMemberByMemberId(loginForm.getMemberId());
 		
 		boolean result = false;
@@ -21,7 +21,7 @@ public class LoginService {
 			result = PasswordUtil.verifyPassword(loginForm.getPasswd(), memberDto.getPasswd());
 		}
 		
-		return result ? memberDto : null;
+		return result;
 	}
 
 }

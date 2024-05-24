@@ -37,15 +37,13 @@ public class LoginController {
 
 	@PostMapping("/auth/login.do")
 	public String login(@ModelAttribute LoginForm loginForm, HttpServletRequest req, Model model) {
-		MemberDto memberDto = loginService.login(loginForm);
-
-		if (ObjectUtils.isEmpty(memberDto)) {
-			model.addAttribute("code", Message.ID_OR_PWD_IS_WRONG.getCode());
-			model.addAttribute("desc", Message.ID_OR_PWD_IS_WRONG.getDescription());
-			return "auth/login";
+		if (loginService.login(loginForm)) {
+			return "redirect:/index.do";
 		}
-
-		return "redirect:/index.do";
+		
+		model.addAttribute("code", Message.ID_OR_PWD_IS_WRONG.getCode());
+		model.addAttribute("desc", Message.ID_OR_PWD_IS_WRONG.getDescription());
+		return "auth/login";
 	}
 
 	@RequestMapping("/auth/recoverPassPage.do")
