@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.portfolio.www.dao.mybatis.MemberRepository;
 import com.portfolio.www.dto.JoinForm;
+import com.portfolio.www.util.PasswordUtil;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 
@@ -23,21 +24,7 @@ public class JoinService {
 	 */
 	
 	public int join(JoinForm joinForm) {
-		encPassword(joinForm);
+		joinForm.setPasswd(PasswordUtil.encPassword(joinForm.getPasswd()));
 		return memberRepository.addMember(joinForm);
-	}
-	
-	private void encPassword(JoinForm joinForm) {
-		String passwd = joinForm.getPasswd();
-		String encPasswd = BCrypt.withDefaults().hashToString(12, passwd.toCharArray());
-		joinForm.setPasswd(encPasswd);
-		
-		/*
-		 * System.out.println("encPasswd >>>>>>>>> " + encPassword);
-		 * 
-		 * BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(),
-		 * encPassword); System.out.println("result.verified >>>>>>>>> " +
-		 * result.verified);
-		 */
 	}
 }
