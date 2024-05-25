@@ -38,6 +38,9 @@ public class LoginController {
 	@PostMapping("/auth/login.do")
 	public String login(@ModelAttribute LoginForm loginForm, HttpServletRequest req, Model model) {
 		if (loginService.login(loginForm)) {
+			// 세션에 로그인 정보 저장
+			req.getSession().setAttribute("memberId", loginForm.getMemberId());
+			// String referer = req.getHeader("referer");
 			return "redirect:/index.do";
 		}
 		
