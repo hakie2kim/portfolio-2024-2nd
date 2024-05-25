@@ -6,11 +6,11 @@
 
 ### 로그인
 
+`login.jsp` - `<form>` ⮂ `LoginController.java` - `login()` ⮂ `LoginService.java` - `login()` ⮂ `MemberRepository.java` - `findMemberByMemberId()`, `PasswordUtil.java` - `verifyPassword()`
+
 - [x] 다음 페이지는 로그인 없이 접근할 수 없습니다.
   - 공지사항 목록 페이지 (`/forum//notice/listPage.do`)
   - 공지사항 작성 페이지 (`/forum/notice/writePage.do`)
-- [x] 로그인에 실패한 경우 경우를 구분해 다음과 같은 메시지를 보여주어야 합니다.
-  - 아이디 또는 비밀번호를 잘못 입력했습니다.
 
 #### Filter 등록하는 방법
 
@@ -26,6 +26,9 @@
 1. 요청 URI(`requestURI`)가 로그인이 필요한 URI 배열(`LOGIN_REQUIRED_URI`)에 존재하는지 확인한다.
 2. 세션에 로그인 할 때 저장했던 값(`memberId`)이 존재하는지 확인한다.
 3. `2.`의 값이 존재하지 않으면 로그인 페이지(`/auth/loginPage.do`)로 리다이렉트한다.
+
+- [x] 로그인에 실패한 경우 경우를 구분해 다음과 같은 메시지를 보여주어야 합니다.
+  - 아이디 또는 비밀번호를 잘못 입력했습니다.
 
 ### 회원가입
 
