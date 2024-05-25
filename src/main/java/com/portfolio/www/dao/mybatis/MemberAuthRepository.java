@@ -10,9 +10,6 @@ import com.portfolio.www.dto.MemberAuthDto;
 import com.portfolio.www.dto.MemberDto;
 
 @Repository
-public interface MemberRepository {
-	// public int addMember(HashMap<String, String> params);
-	public int addMember(JoinForm joinForm);
-
-	public MemberDto findMemberByMemberId(String memberId);
+public interface MemberAuthRepository {
+	public int addMemberAuth(MemberAuthDto memberAuthDto);
 }

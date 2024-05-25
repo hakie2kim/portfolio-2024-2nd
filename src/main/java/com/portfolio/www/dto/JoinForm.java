@@ -5,6 +5,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 public class JoinForm {
+	private Integer memberSeq;
+	
 	@NotBlank
 	@Pattern(regexp = "^[a-z0-9]{4,20}$", message = "아이디는 4~20자의 영어 소문자, 숫자만 사용 가능합니다")
 	private String memberId;
@@ -19,6 +21,12 @@ public class JoinForm {
 	@Email
 	private String email;
 	
+	public Integer getMemberSeq() {
+		return memberSeq;
+	}
+	public void setMemberSeq(Integer memberSeq) {
+		this.memberSeq = memberSeq;
+	}
 	public String getMemberId() {
 		return memberId;
 	}
