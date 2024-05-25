@@ -43,6 +43,17 @@
 - [x] 패스워드는 DB에 암호화 후 저장되어야 합니다.
 - [x] 인증 링크를 포함한 이메일을 보내야 합니다.
 
+### 공지사항
+
+#### 게시글 목록
+
+`list.jsp` ⭠ `NoticeController.java` - `listPage()` ⮂ `BoardService.java` - `findAllBoards()` ⮂ `BoardRepository.java` - `findAllBoards()`
+
+- [x] 한 페이지 당 게시물 개수는 10개입니다.
+- [x] 페이지 네비게이션
+  - 한번에 보여주는 페이지 개수는 10개입니다.
+  - 1 페이지 앞, 마지막 페이지 뒤에는 앞, 뒤 네비게이션으로 넘어가는 화살표 모양 아이콘이 없어야 합니다.
+
 ### 프로젝트 환경 설정
 
 #### Docker DB
