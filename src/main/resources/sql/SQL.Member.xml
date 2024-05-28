@@ -17,4 +17,8 @@
     	SELECT * FROM forum.`member`
     	WHERE member_id = #{memberId}
     </select>
+    <select id="findMemberSeq" parameterType="String" resultType="Integer">
+    	SELECT member_seq FROM forum.`member`
+    	WHERE member_id = #{memberId}
+    </select>    
 </mapper>

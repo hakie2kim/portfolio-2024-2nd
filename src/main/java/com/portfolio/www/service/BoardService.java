@@ -21,4 +21,8 @@ public class BoardService {
 	public int cntTotalBoards(Integer boardTypeSeq) {
 		return boardRepository.cntTotalBoards(boardTypeSeq);
 	}
+
+	public int addBoard(BoardDto boardDto) {
+		return boardRepository.addBoard(boardDto);
+	}
 }

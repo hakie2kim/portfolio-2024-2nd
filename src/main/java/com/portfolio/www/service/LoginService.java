@@ -23,5 +23,8 @@ public class LoginService {
 		
 		return result;
 	}
-
+	
+	public int findMemberSeq(String memberId) {
+		return memberRepository.findMemberSeq(memberId);
+	}
 }

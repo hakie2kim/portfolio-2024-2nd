@@ -15,4 +15,5 @@ public interface MemberRepository {
 	public int addMember(JoinForm joinForm);
 
 	public MemberDto findMemberByMemberId(String memberId);
+	public int findMemberSeq(String memberId);
 }
